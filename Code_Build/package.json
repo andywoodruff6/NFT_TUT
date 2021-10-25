@@ -1,6 +1,6 @@
 {
   "name": "on-chain-nft",
-  "description": "This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.",
+  "description": "This project demonstrates a basic Hardhat use case.",
   "version": "1.0.0",
   "main": "hardhat.config.js",
   "directories": {
@@ -18,5 +18,19 @@
   "bugs": {
     "url": "https://github.com/andywoodruff6/NFT_TUT/issues"
   },
-  "homepage": "https://github.com/andywoodruff6/NFT_TUT#readme"
+  "homepage": "https://github.com/andywoodruff6/NFT_TUT#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.2",
+    "base64-sol": "^1.1.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.1",
+    "hardhat-deploy": "^0.9.4",
+    "web3": "^1.6.0"
+  }
 }
