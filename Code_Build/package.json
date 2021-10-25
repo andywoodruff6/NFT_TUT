@@ -1,0 +1,22 @@
+{
+  "name": "on-chain-nft",
+  "description": "This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.",
+  "version": "1.0.0",
+  "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andywoodruff6/NFT_TUT.git"
+  },
+  "author": "The New Badger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andywoodruff6/NFT_TUT/issues"
+  },
+  "homepage": "https://github.com/andywoodruff6/NFT_TUT#readme"
+}
