@@ -21,7 +21,8 @@
   "homepage": "https://github.com/andywoodruff6/NFT_TUT#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.2",
-    "base64-sol": "^1.1.0"
+    "base64-sol": "^1.1.0",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
