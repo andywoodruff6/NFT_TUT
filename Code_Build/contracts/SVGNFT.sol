@@ -1,24 +1,26 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-/* give the contract some SVG code
-   output the NFT URI with this SVG code
-   store all the NFT metaldata on-shain
-*/ 
+/// @title SVG tuturial
+/// @author The New Badger
+/// @notice Takes a SVG and mints an NFT all on chain
+/// @dev encodes the SVG as a string and stores it in the contract
+
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "base64-sol/base64.sol";
 
 contract SVGNFT is ERC721URIStorage {
+
+    // VARIABLES
     uint256 public tokenCounter;
+
     // EVENTS
     event CreatedSVGNFT(uint256 indexed tokenId, string tokenURI);
 
-    constructor() ERC721("SVG NFT", "svgNFT") {
-        // the first parameter is the name of the colection
-        // the second parameter is the acryonm 
-        tokenCounter = 0;
 
+    constructor() ERC721("SVG NFT", "svgNFT") {
+        tokenCounter = 0;
     }
 
     function create(string memory _svg) public {
