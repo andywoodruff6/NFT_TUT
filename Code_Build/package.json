@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/andywoodruff6/NFT_TUT#readme",
   "dependencies": {
+    "@chainlink/contracts": "^0.2.2",
     "@openzeppelin/contracts": "^4.3.2",
     "base64-sol": "^1.1.0",
     "dotenv": "^10.0.0",
