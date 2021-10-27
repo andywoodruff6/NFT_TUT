@@ -83,7 +83,7 @@ contract RandomSVG is ERC721URIStorage, VRFConsumerBase {
     }
     function generateSVG(uint256 _randomNumber) public view returns(string memory finalSVG) {  
         uint256 numberOfPaths = (_randomNumber % maxNumberOfPaths) +1;
-        finalSVG =string(abi.encodePacked("<svg xmlns='http://www.w3.org/2000/svg' size='", uint2str(size),"' size='", uint2str(size),"'>"));
+        finalSVG =string(abi.encodePacked("<svg xmlns='http://www.w3.org/2000/svg' height='", uint2str(size),"' width='", uint2str(size),"'>"));
 
         for(uint i=0; i< numberOfPaths; i++){
             uint256 newRNG = uint256(keccak256(abi.encode(_randomNumber, i)));
@@ -101,7 +101,7 @@ contract RandomSVG is ERC721URIStorage, VRFConsumerBase {
             pathSvg = string(abi.encodePacked(pathSvg, pathCommand));
         }
         string memory color = colors[_randomNumber % colors.length];
-        pathSvg = string(abi.encodePacked(pathSvg, "'fill='transparent' stroke='", color, "'>"));
+        pathSvg = string(abi.encodePacked(pathSvg, "' fill='transparent' stroke='", color, "'/>"));
     }
     function generatePathCommand(uint256 _randomNumber) public view returns(string memory pathCommand) {
         pathCommand = pathCommands[_randomNumber % pathCommands.length];
