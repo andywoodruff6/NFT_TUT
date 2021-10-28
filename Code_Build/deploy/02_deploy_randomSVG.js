@@ -44,13 +44,17 @@ module.exports = async ({
 
     const RandomSVGContract = await ethers.getContractFactory("RandomSVG")
     const randomSVG = new ethers.Contract(RandomSVG.address, RandomSVGContract.interface, signer)
-    let creation_tx = await randomSVG.create({ gasLimit: 300000})
+    let creation_tx = await randomSVG.create({ gasLimit: 300000, value: 5000000000000000})
     let receipt = await creation_tx.wait(1)
     let tokenId = receipt.events[3].topics[2]
     log(`You've made your NFT! this is token number ${tokenId.toString()}`)
     log(`Let's wait for the Chainlink node to respond...`)
     if (chainId != 31337) {
-
+        await new Promise(r => setTimeout(r, 180000))
+        log(`awaiting the chainlink node....`)
+        let finish_tx = await randomSVG.finishMint(tokenId, {gasLimit: 2000000})
+        await finish_tx.wait(1)
+        log(`You can view the tokenURI here: ${await randomSVG.tokenURI(tokenId)}`)
     } else {
         const VRFCoordinatorMock = await deployments.get("VRFCoordinatorMock")
         vrfCoordinator = await ethers.getContractAt("VRFCoordinatorMock", VRFCoordinatorMock.address, signer)

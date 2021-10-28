@@ -14,6 +14,8 @@ contract RandomSVG is ERC721URIStorage, VRFConsumerBase {
     bytes32 public keyHash;
     uint256 public fee;
     uint256 public tokenCounter;
+    uint256 public price;
+    address payable owner;
     // SVG Params
     uint256 public maxNumberOfPaths;
     uint256 public maxNumberOfCommands;
@@ -36,6 +38,8 @@ contract RandomSVG is ERC721URIStorage, VRFConsumerBase {
             fee = _fee;
             keyHash = _keyHash;
             tokenCounter = 0;
+            price = 5000000000000000;
+            owner = payable (msg.sender);
 
             maxNumberOfPaths = 12;
             maxNumberOfCommands = 5;
@@ -45,18 +49,21 @@ contract RandomSVG is ERC721URIStorage, VRFConsumerBase {
 
     }
 
-    function create() public returns (bytes32 requestId) {
-        //get a random number between 1 and 10
-        // chainlink VRF is the way to go.
-        // generate svg code
-        // base64 encode
-        // get the tokenURI and mint the NFT
+    function create() public payable returns (bytes32 requestId) {
+        require(msg.value >= price, "Need to send more ETH");
         requestId = requestRandomness(keyHash, fee);
         requestIdToSender[requestId] = msg.sender;
         uint256 tokenId = tokenCounter;
         requestIdToTokenId[requestId] = tokenId;
         tokenCounter += 1;
         emit requestedRandomSVG(requestId, tokenId);
+    }
+    modifier onlyOwner() {
+        require(msg.sender == owner, "not owner");
+        _;
+    }
+    function withdraw() public {
+        owner.transfer(address(this).balance);
     }
     function fulfillRandomness(bytes32 _requestId, uint256 _randomNumber) internal override {
 
